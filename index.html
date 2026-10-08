@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prebet Naufal menyediakan perkhidmatan e-hailing premium dengan kenderaan eksklusif dan pengalaman perjalanan yang selesa.">
+    <title>Prebet Naufal | E-Hailing Premium & Eksklusif</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #07080A;
+            --bg-card: #151A21;
+            --gold-primary: #D4AF37;
+            --gold-hover: #F5D76E;
+            --gold-muted: rgba(212, 175, 55, 0.4);
+            --text-light: #F8F8F8;
+            --text-muted: #A0A5AA;
+            --glass-bg: rgba(21, 26, 33, 0.6);
+            --glass-border: rgba(212, 175, 55, 0.15);
+            --glass-blur: blur(16px);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(7, 8, 10, 0.9);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            color: var(--gold-primary);
+        }
+
+        .logo span {
+            color: var(--gold-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:not(.cta-btn):hover {
+            color: var(--gold-primary);
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--gold-primary), #B5952F);
+            color: var(--bg-dark) !important;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, var(--gold-hover), var(--gold-primary));
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--gold-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 5% 80px;
+            position: relative;
+            background: linear-gradient(to right, rgba(7, 8, 10, 0.95) 0%, rgba(7, 8, 10, 0.7) 100%),
+                        url('1000993665_77b35e.jpg') center/cover fixed;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--gold-primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 550px;
+        }
+
+        .booking-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .input-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            transition: var(--transition);
+        }
+
+        .input-group:focus-within {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .input-group i {
+            color: var(--gold-primary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .input-group input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-light);
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, var(--gold-primary), #B5952F);
+            color: var(--bg-dark);
+            border: none;
+            padding: 1.2rem;
+            border-radius: 16px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, var(--gold-hover), var(--gold-primary));
+        }
+
+        .features-banner {
+            position: relative;
+            z-index: 10;
+            background: var(--bg-card);
+            padding: 4rem 5%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            margin-top: -20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            max-width: 250px;
+            padding: 1rem;
+        }
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.2rem;
+            background: rgba(212, 175, 55, 0.1);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            border: 1px solid var(--gold-muted);
+        }
+
+        .feature-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .fleet {
+            padding: 8rem 5%;
+            background: var(--bg-dark);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .section-header h2 span {
+            color: var(--gold-primary);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .featured-vehicle {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+
+        .featured-vehicle:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.15);
+        }
+
+        .vehicle-img-wrap {
+            flex: 1.2;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vehicle-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 400px;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .featured-vehicle:hover .vehicle-img {
+            transform: scale(1.05);
+        }
+
+        .vehicle-details {
+            flex: 1;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .vehicle-tag {
+            color: var(--gold-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .vehicle-details h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .spec-item i {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
+        }
+
+        .vehicle-desc {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        footer {
+            background: #040506;
+            padding: 6rem 5% 2rem;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            max-width: 400px;
+        }
+
+        .footer-links h4 {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--gold-primary);
+            padding-left: 8px;
+        }
+
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-light);
+            text-decoration: none;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            background: rgba(255,255,255,0.03);
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-info a:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .contact-info i {
+            color: var(--gold-primary);
+            font-size: 1.3rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+        }
+
+        .reveal {
+            opacity: 1;
+            transform: none;
+        }
+
+        .reveal.reveal-ready {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.reveal-ready.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero {
+            background-attachment: scroll;
+        }
+
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                background-attachment: scroll;
+                background-position: center center;
+            }
+
+            nav.scrolled {
+                -webkit-backdrop-filter: none;
+                backdrop-filter: none;
+                background: rgba(7, 8, 10, 0.96);
+            }
+
+            .booking-card,
+            .nav-links {
+                -webkit-backdrop-filter: none;
+                backdrop-filter: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html, body {
+                width: 100%;
+                min-height: 100%;
+                overflow-x: hidden;
+            }
+
+            .hero {
+                min-height: 100svh;
+                min-height: 100vh;
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.25rem, 10vw, 3rem);
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .featured-vehicle {
+                width: 100%;
+            }
+
+            .vehicle-img {
+                width: 100%;
+                height: 300px;
+                min-height: 300px;
+            }
+
+            .vehicle-details h3 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .featured-vehicle { flex-direction: column; }
+            .vehicle-img { min-height: 350px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background: rgba(7, 8, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-links.active { right: 0; }
+            .menu-toggle { display: block; z-index: 1001; }
+
+            .hero { padding-top: 120px; text-align: center; }
+            .hero-content { margin: 0 auto; }
+            .hero h1 { font-size: 3rem; }
+            .hero p { margin: 0 auto 2.5rem auto; }
+
+            .input-row { flex-direction: column; gap: 1rem; }
+            .booking-card { padding: 1.5rem; }
+
+            .vehicle-details { padding: 2rem 1.5rem; }
+            .spec-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <noscript>
+        <div style="background:#D4AF37;color:#07080A;padding:12px;text-align:center;font-family:Arial,sans-serif;">
+            Sila aktifkan JavaScript untuk menggunakan fungsi tempahan WhatsApp.
+        </div>
+    </noscript>
+
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-crown"></i> Prebet<span>Naufal</span>
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </div>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#utama">Utama</a>
+            <a href="#kelebihan">Kelebihan</a>
+            <a href="#kenderaan">Kenderaan</a>
+            <a href="https://wa.me/60108353648" target="_blank" class="cta-btn">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero" id="utama">
+        <div class="hero-content reveal">
+            <div class="hero-badge"><i class="fa-solid fa-star"></i> E-Hailing Premium</div>
+            <h1>Perjalanan Eksklusif, <br><span>Keselesaan Maksimum.</span></h1>
+            <p>Alami pengalaman perjalanan tahap tertinggi bersama Prebet Naufal. Menampilkan kemewahan dan keselamatan <strong>Perodua Bezza AV Merah</strong> yang eksklusif untuk anda.</p>
+
+            <div class="booking-card">
+                <div class="input-row">
+                    <div class="input-group">
+                        <i class="fa-solid fa-location-crosshairs"></i>
+                        <input type="text" id="lokasi" placeholder="Masukkan lokasi ambil...">
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input type="text" id="destinasi" placeholder="Masukkan destinasi...">
+                    </div>
+                </div>
+                <a href="https://wa.me/60108353648"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="hero-btn"
+                   id="tempah-sekarang"
+                   style="width: 100%;">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> Tempah Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-banner reveal" id="kelebihan">
+        <div class="feature-item">
+            <i class="fa-solid fa-user-tie"></i>
+            <h4>Pemandu Profesional</h4>
+            <p>Berpengalaman luas, berhemah tinggi dan mengutamakan keselamatan anda sepanjang perjalanan.</p>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-clock"></i>
+            <h4>Tepat Pada Masa</h4>
+            <p>Kami sangat mementingkan masa. Pemandu bersedia di lokasi anda sebelum waktu yang ditetapkan.</p>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-car"></i>
+            <h4>Kebersihan Terjamin</h4>
+            <p>Kenderaan disanitasi secara berkala dengan bau yang segar untuk keselesaan VIP anda.</p>
+        </div>
+    </section>
+
+    <section class="fleet" id="kenderaan">
+        <div class="section-header reveal">
+            <h2>Kenderaan <span>Eksklusif</span> Kami</h2>
+            <p>Fokus penuh kami adalah pada satu jentera yang memberikan gabungan sempurna antara ruang, keselesaan, dan penjimatan yang premium.</p>
+        </div>
+
+        <div class="featured-vehicle reveal">
+            <div class="vehicle-img-wrap">
+                <img src="1000993665_77b35e.jpg" alt="Perodua Bezza AV Merah" class="vehicle-img" loading="eager" decoding="async">
+            </div>
+            <div class="vehicle-details">
+                <div class="vehicle-tag">Kenderaan Rasmi</div>
+                <h3>Perodua Bezza 1.3 AV (Merah)</h3>
+
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <i class="fa-solid fa-user-group"></i>
+                        <span>Kapasiti 4 Penumpang</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fa-solid fa-suitcase-rolling"></i>
+                        <span>Bonet Luas 508L</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fa-solid fa-chair"></i>
+                        <span>Kerusi Kulit Premium</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Sistem Keselamatan A.S.A</span>
+                    </div>
+                </div>
+
+                <p class="vehicle-desc">Spesifikasi tertinggi (Advance Version) direka khusus untuk memberi anda ketenangan minda. Dengan kerusi berbalut kulit yang elegan dan ruang bonet yang luas, kenderaan ini sangat sesuai untuk perjalanan jauh mahupun ke lapangan terbang.</p>
+
+                <a href="https://wa.me/60108353648?text=Hai%20Prebet%20Naufal%2C%20saya%20berminat%20untuk%20menempah%20perkhidmatan%20Perodua%20Bezza%20AV%20Merah."
+                   target="_blank" rel="noopener noreferrer" class="hero-btn" style="width: 100%; padding: 1rem;">
+                    <i class="fa-brands fa-whatsapp"></i> Tempah Bezza AV Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="reveal">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-crown"></i> Prebet<span>Naufal</span>
+                </a>
+                <p>Mendefinisikan semula perjalanan anda. Perkhidmatan e-hailing eksklusif berfokuskan kualiti, keselamatan, dan kepuasan pelanggan bersama Perodua Bezza AV.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Pautan Pantas</h4>
+                <ul>
+                    <li><a href="#utama">Laman Utama</a></li>
+                    <li><a href="#kelebihan">Kelebihan Servis</a></li>
+                    <li><a href="#kenderaan">Kenderaan Rasmi</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links contact-info">
+                <h4>Hubungi Kami</h4>
+                <a href="tel:0108353648" title="Hubungi Naufal">
+                    <i class="fa-solid fa-phone-volume"></i> 010-8353648
+                </a>
+                <a href="https://wa.me/60108353648" target="_blank" title="WhatsApp Naufal">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Kami
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Prebet Naufal. Hak Cipta Terpelihara.</p>
+        </div>
+    </footer>
+
+    <script>
+        "use strict";
+
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                var navbar = document.getElementById("navbar");
+
+                if (navbar) {
+                    var updateNavbar = function () {
+                        if (window.scrollY > 50) {
+                            navbar.classList.add("scrolled");
+                        } else {
+                            navbar.classList.remove("scrolled");
+                        }
+                    };
+
+                    window.addEventListener("scroll", updateNavbar, { passive: true });
+                    updateNavbar();
+                }
+
+                var mobileMenuBtn = document.getElementById("mobile-menu");
+                var navLinks = document.getElementById("nav-links");
+
+                if (mobileMenuBtn && navLinks) {
+                    mobileMenuBtn.addEventListener("click", function () {
+                        navLinks.classList.toggle("active");
+
+                        var icon = mobileMenuBtn.querySelector("i");
+                        var isOpen = navLinks.classList.contains("active");
+
+                        if (icon) {
+                            if (isOpen) {
+                                icon.classList.remove("fa-bars-staggered");
+                                icon.classList.add("fa-xmark");
+                            } else {
+                                icon.classList.remove("fa-xmark");
+                                icon.classList.add("fa-bars-staggered");
+                            }
+                        }
+
+                        document.body.style.overflow = isOpen ? "hidden" : "";
+                    });
+
+                    var links = navLinks.querySelectorAll("a");
+                    for (var i = 0; i < links.length; i++) {
+                        links[i].addEventListener("click", function () {
+                            navLinks.classList.remove("active");
+
+                            var icon = mobileMenuBtn.querySelector("i");
+                            if (icon) {
+                                icon.classList.remove("fa-xmark");
+                                icon.classList.add("fa-bars-staggered");
+                            }
+
+                            document.body.style.overflow = "";
+                        });
+                    }
+                }
+
+                var revealElements = document.querySelectorAll(".reveal");
+
+                if ("IntersectionObserver" in window) {
+                    for (var j = 0; j < revealElements.length; j++) {
+                        revealElements[j].classList.add("reveal-ready");
+                    }
+
+                    var revealObserver = new IntersectionObserver(function (entries, observer) {
+                        for (var k = 0; k < entries.length; k++) {
+                            if (entries[k].isIntersecting) {
+                                entries[k].target.classList.add("active");
+                                observer.unobserve(entries[k].target);
+                            }
+                        }
+                    }, {
+                        threshold: 0.05,
+                        rootMargin: "0px 0px -30px 0px"
+                    });
+
+                    for (var m = 0; m < revealElements.length; m++) {
+                        revealObserver.observe(revealElements[m]);
+                    }
+                }
+
+                window.addEventListener("resize", function () {
+                    if (window.innerWidth > 768 && navLinks) {
+                        navLinks.classList.remove("active");
+                        document.body.style.overflow = "";
+                    }
+                });
+
+            } catch (error) {
+                console.warn("Prebet Naufal: fungsi interaktif tidak tersedia.", error);
+
+                var elements = document.querySelectorAll(".reveal");
+                for (var n = 0; n < elements.length; n++) {
+                    elements[n].classList.remove("reveal-ready");
+                    elements[n].classList.add("active");
+                }
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var tempahButton = document.getElementById("tempah-sekarang");
+
+            if (!tempahButton) return;
+
+            tempahButton.addEventListener("click", function (event) {
+                try {
+                    var lokasiEl = document.getElementById("lokasi");
+                    var destinasiEl = document.getElementById("destinasi");
+
+                    var lokasi = lokasiEl ? lokasiEl.value.trim() : "";
+                    var destinasi = destinasiEl ? destinasiEl.value.trim() : "";
+
+                    var mesej = "Hai Prebet Naufal! 👋\n\nSaya ingin menempah perkhidmatan e-hailing (Perodua Bezza AV Merah).";
+
+                    if (lokasi && destinasi) {
+                        mesej += "\n\n📍 Lokasi Ambil: " + lokasi + "\n🏁 Destinasi: " + destinasi + "\n\nMohon berikan sebut harga (quotation) untuk perjalanan ini. Terima kasih.";
+                    } else {
+                        mesej += "\n\nBoleh saya tahu kadar harga untuk perjalanan saya?";
+                    }
+
+                    var whatsappURL = "https://wa.me/60108353648?text=" + encodeURIComponent(mesej);
+                    tempahButton.href = whatsappURL;
+
+                } catch (error) {
+                    console.error("WhatsApp booking error:", error);
+
+                    tempahButton.href = "https://wa.me/60108353648?text=" + encodeURIComponent(
+                        "Hai Prebet Naufal! 👋\n\nSaya ingin menempah perkhidmatan e-hailing (Perodua Bezza AV Merah).\n\nBoleh saya tahu kadar harga untuk perjalanan saya?"
+                    );
+                }
+            });
+        });
+    </script>
+</body>
+</html>
